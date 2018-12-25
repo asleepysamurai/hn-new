@@ -29,7 +29,6 @@
     "minimum_chrome_version": "42",
     "offline_enabled": false,
     "permissions": [
-        "tabs",
         "storage"
     ],
     "short_name": "HN Frontpage New",
