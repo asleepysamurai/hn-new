@@ -29,14 +29,14 @@ var paths = {
     src: {
         js: ['./src/js/**/*.js'],
         html: ['./src/**/*.html'],
-        copyFiles: ['./src/img/**/*', './src/icons/**/*', './src/css/**/*.css']
+        copyFiles: ['./src/img/**/*', './src/icons/**/*', './src/css/**/*.css', './src/manifest.json']
     },
     cleanDir: './public/**/*',
     dest: {
         js: './public/js',
         jsFileNameApp: 'app.bundle.js',
         jsFileNameVendor: 'vendor.bundle.js',
-        copyFiles: ['./public/img', './public/icons', './public/css'],
+        copyFiles: ['./public/img', './public/icons', './public/css', './public'],
         html: './public'
     }
 };
