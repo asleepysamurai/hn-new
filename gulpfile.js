@@ -30,7 +30,7 @@ var paths = {
     src: {
         js: ['./src/js/**/*.js'],
         html: ['./src/**/*.html'],
-        copyFiles: ['./src/img/**/*', './src/icons/**/*', './src/css/**/*.css', './src/manifest.json'],
+        copyFiles: ['./src/icons/**/*', './src/css/**/*.css', './src/manifest.json'],
         zip: './public/**/*',
         zipSrc: ['./**/*', '!./public/**', '!./release/**', '!./node_modules/**']
     },
@@ -39,7 +39,7 @@ var paths = {
         js: './public/js',
         jsFileNameApp: 'app.bundle.js',
         jsFileNameVendor: 'vendor.bundle.js',
-        copyFiles: ['./public/img', './public/icons', './public/css', './public'],
+        copyFiles: ['./public/icons', './public/css', './public'],
         html: './public',
         zip: `./release`,
         zipSrc: `./release`
