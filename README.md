@@ -1,9 +1,9 @@
 ##### The Problem
-
 With the growth of HN in recent years, there are a huge number of posts being submitted every day. However, there's not been a corresponding rise in the number of people looking at /newest and /shownew, and as a consequence a lot of good posts, esp. 'Show HNs' disappear in the crowd.
 
 As it so happened, I had a few free hours this Christmas, so I decided to tackle this. Here's my shot at it.
 
+##### A Possible Solution
 This extension picks 5 (or however many you want) random items from /newest and /shownew (or any one - weighted towards picking younger posts), and appends them to the top of the frontpage (and it's next pages). This way, you get exposed to a small dose of the newest posts, and your upvote might contribute towards getting that post to the actual front page, so more people can know about it.
 
 The extension, by default picks 5 random posts from the top 30 undead posts in /shownew, and appends them to the top of the frontpage. You can fiddle with the extension settings to get it to pick from both /shownew and /newest, and also the total number of items you want to pick.
