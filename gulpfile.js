@@ -76,8 +76,12 @@ function compileJS(isVendor, next) {
         gulp.src(paths.src.js)
             .pipe(sourcemaps.init())
             .pipe(babel({
-                presets: ['@babel/env'],
-                plugins: ['fast-async']
+                presets: [
+                    ['@babel/preset-env', {
+                        exclude: ['transform-async-to-generator', 'transform-regenerator']
+                    }]
+                ],
+                plugins: ['module:fast-async']
             }))
             .pipe(buffer())
             .pipe(gulpif(argv.production, uglify()
