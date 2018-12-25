@@ -23,13 +23,15 @@ var concat = require('gulp-concat');
 var replace = require('gulp-replace');
 var sort = require('gulp-sort');
 var del = require('del');
-var os = require('os');
+const zip = require('gulp-zip');
 
+var packageData = require('./package.json');
 var paths = {
     src: {
         js: ['./src/js/**/*.js'],
         html: ['./src/**/*.html'],
-        copyFiles: ['./src/img/**/*', './src/icons/**/*', './src/css/**/*.css', './src/manifest.json']
+        copyFiles: ['./src/img/**/*', './src/icons/**/*', './src/css/**/*.css', './src/manifest.json'],
+        zip: './public/**/*'
     },
     cleanDir: './public/**/*',
     dest: {
@@ -37,7 +39,8 @@ var paths = {
         jsFileNameApp: 'app.bundle.js',
         jsFileNameVendor: 'vendor.bundle.js',
         copyFiles: ['./public/img', './public/icons', './public/css', './public'],
-        html: './public'
+        html: './public',
+        zip: `./release`
     }
 };
 
@@ -262,12 +265,34 @@ function compile(next) {
             });
 
             if (!watch) {
-                if (next && next.call)
-                    next();
+                if (argv.production) {
+                    var startTime = process.hrtime();
+                    var e = {
+                        task: 'zip',
+                    };
 
-                setTimeout(function() {
-                    process.exit(0);
-                }, 300);
+                    logStart(e);
+                    gulp.src(paths.src.zip)
+                        .pipe(zip(`${packageData.version}.zip`))
+                        .pipe(gulp.dest(paths.dest.zip).on('error', onError.bind(null, watch, next))
+                            .on('end', function() {
+                                logDone({
+                                    task: 'zip',
+                                    duration: process.hrtime(startTime)
+                                });
+
+                                if (!watch && next && next.call)
+                                    next();
+                            })
+                        );
+                } else {
+                    if (next && next.call)
+                        next();
+
+                    setTimeout(function() {
+                        process.exit(0);
+                    }, 300);
+                }
             }
         }
     ]))(next);
