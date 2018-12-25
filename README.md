@@ -20,5 +20,5 @@ This is what it looks like:
 #### Download
 
 The extension is available for both Google Chrome, and Mozilla Firefox (thanks to WebExtensions magic!). You can get them from:
-- [Mozilla Firefox](https://addons.mozilla.org/en-US/firefox/addon/hn-showhn-items-in-frontpage/)
+- [Mozilla Firefox](https://addons.mozilla.org/en-US/firefox/addon/hn-showhn-items-in-frontpage/) (works on Firefox for Android also)
 - [Google Chrome](https://chrome.google.com/webstore/detail/random-new-items-in-hacke/kcllahhmlhhmljeppnpdggmjilchdojk)
