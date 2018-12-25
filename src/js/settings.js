@@ -3,7 +3,7 @@
 
     const defaultSettings = {
         count: 5,
-        sources: ['newest', 'shownew']
+        sources: ['shownew']
     };
 
     function loadCurrentSettings() {
@@ -12,7 +12,7 @@
             if (itemCountNode)
                 itemCountNode.value = settings.count;
 
-            defaultSettings.sources.forEach(function(source) {
+            ['newest', 'shownew'].forEach(function(source) {
                 const itemNode = document.getElementById('items-' + source);
                 if (itemNode)
                     itemNode.checked = settings.sources.indexOf(source) > -1;
@@ -24,13 +24,20 @@
         const itemCountNode = document.getElementById('item-count');
         if (itemCountNode) {
             itemCountNode.addEventListener('change', function(ev) {
-                chrome.storage.sync.set({
-                    count: (ev.currentTarget || ev.target).value || defaultSettings.count
-                });
+                let count = parseInt((ev.currentTarget || ev.target).value);
+                count = isNaN(count) ?
+                    defaultSettings.count :
+                    (count < 0 ?
+                        0 :
+                        (count > 10 ?
+                            10 :
+                            count));
+
+                chrome.storage.sync.set({ count });
             });
         }
 
-        defaultSettings.sources.forEach(function(source) {
+        ['newest', 'shownew'].forEach(function(source) {
             const node = document.getElementById('items-' + source);
             if (node) {
                 node.addEventListener('change', function(ev) {
@@ -44,9 +51,7 @@
                         else if (!isChecked && sourceIndex > -1)
                             sources.splice(sourceIndex, 1);
 
-                        chrome.storage.sync.set({
-                            sources: sources
-                        });
+                        chrome.storage.sync.set({ sources });
                     });
                 });
             }
