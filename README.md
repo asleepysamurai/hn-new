@@ -8,6 +8,10 @@ This extension picks 5 (or however many you want) random items from /newest and 
 
 The extension, by default picks 5 random posts from the top 30 undead posts in /shownew, and appends them to the top of the frontpage. You can fiddle with the extension settings to get it to pick from both /shownew and /newest, and also the total number of items you want to pick.
 
+This is what it looks like:
+
+![Screenshot](https://i.imgur.com/ylDORUr.png)
+
 ##### Caveats
 1. Since the extension has to make multiple network requests to actually fetch the information required, there will be a small time delta between you loading the page and the new posts being added. If in the meanwhile, you scroll down the list, you will be brought back to the top of the page, when the new posts have been added. Some might find this behaviour a bit annoying. There will be a setting in future to not scroll the new items into view.
 
