@@ -28,8 +28,7 @@
             const res = await fetch(nextUrl);
             const html = await res.text();
 
-            const container = document.createElement('div');
-            container.innerHTML = html;
+            const container = document.createRange().createContextualFragment(html);
 
             let filteredItems = [];
             [].slice.call(container.querySelectorAll('.athing'))
