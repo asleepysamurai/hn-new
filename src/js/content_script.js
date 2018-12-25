@@ -19,6 +19,10 @@
 
     const MAX_SET_COUNT_PER_SOURCE = 30;
 
+    function weightedRandom(min, max) {
+        return Math.floor(min + (max - min) * (Math.pow(Math.random(), 2)));
+    };
+
     async function getItems(rank, initUrl, itemCount) {
         let nextUrl = initUrl;
         let items = [];
@@ -53,7 +57,7 @@
                 itemCount));
 
         while (itemCount--) {
-            const randomIndex = Math.floor(Math.random() * (items.length));
+            const randomIndex = weightedRandom(0, items.length - 1);
             if (items[randomIndex]) {
                 const pickedItem = items.splice(randomIndex, 1)[0];
                 pickedItems.push(pickedItem);
