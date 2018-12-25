@@ -1,6 +1,6 @@
 {
   "name": "hn-new",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Firefox/Chrome extension. Randomly picks 5 items from the /newest or /shownew and displays them at the top of the front page.",
   "main": "./src/js/content_script.js",
   "repository": "git@gitlab.com:asleepysamurai/hn-new.git",
