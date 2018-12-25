@@ -31,7 +31,8 @@ var paths = {
         js: ['./src/js/**/*.js'],
         html: ['./src/**/*.html'],
         copyFiles: ['./src/img/**/*', './src/icons/**/*', './src/css/**/*.css', './src/manifest.json'],
-        zip: './public/**/*'
+        zip: './public/**/*',
+        zipSrc: ['./**/*', '!./public/**', '!./release/**', '!./node_modules/**']
     },
     cleanDir: './public/**/*',
     dest: {
@@ -40,7 +41,8 @@ var paths = {
         jsFileNameVendor: 'vendor.bundle.js',
         copyFiles: ['./public/img', './public/icons', './public/css', './public'],
         html: './public',
-        zip: `./release`
+        zip: `./release`,
+        zipSrc: `./release`
     }
 };
 
@@ -276,13 +278,19 @@ function compile(next) {
                         .pipe(zip(`${packageData.version}.zip`))
                         .pipe(gulp.dest(paths.dest.zip).on('error', onError.bind(null, watch, next))
                             .on('end', function() {
-                                logDone({
-                                    task: 'zip',
-                                    duration: process.hrtime(startTime)
-                                });
+                                gulp.src(paths.src.zipSrc)
+                                    .pipe(zip(`${packageData.version}-src.zip`))
+                                    .pipe(gulp.dest(paths.dest.zipSrc).on('error', onError.bind(null, watch, next))
+                                        .on('end', function() {
+                                            logDone({
+                                                task: 'zip',
+                                                duration: process.hrtime(startTime)
+                                            });
 
-                                if (!watch && next && next.call)
-                                    next();
+                                            if (!watch && next && next.call)
+                                                next();
+                                        })
+                                    );
                             })
                         );
                 } else {
